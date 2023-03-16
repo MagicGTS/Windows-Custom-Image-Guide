@@ -71,9 +71,91 @@ By default VM working behind the NAT of VM Software does. But we can choose brid
 
 Now we can just start your VM and proceed installation process as it happens with real PC.
 
-### Installation tips foe Windows 11
+### Installation tips for Windows 11
 
 As your know Microsoft tries to force us to use a modern hardware and microsoft account to. To walkaround it please follow this links for instructions:
 
 * [How to Bypass Windows 11's TPM, CPU and RAM Requirements](https://www.tomshardware.com/how-to/bypass-windows-11-tpm-requirement)
 * [How to bypass the Microsoft Account requirement during Windows setup](https://www.ghacks.net/2023/01/26/how-to-bypass-the-microsoft-account-requirement-during-windows-setup/)
+
+## Sysprep the image
+
+After you have done with installation software inside virtual machine, customize windows appearance chosing default apps for file extention and so on, it is time to making snapshot of current state, before we can going to the next statge.
+
+### Export Start Menu Layout
+
+To export and save for future use Start menu layout you should issue Powershell command:
+```
+Export-StartLayout -Path "C:\LayoutModification.json"
+```
+
+This file will need on the one of next steps
+
+### Exporting default apps for file extensions
+
+To export and save for future use defaults apps for file extensions you should issue Powershell command:
+```
+dism /Online /Export-DefaultAppAssociations:"C:\AppAssociations.xml"
+```
+
+### Copying the reference user profile
+
+You should have a preconfigured user profile which you want to use in your custom windows image as default one. To do so just configure all things you want to have as default in new system
+
+### Sysprep first stage
+
+The content of unattend.xml is:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <CopyProfile>true</CopyProfile>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <CopyProfile>true</CopyProfile>
+        </component>
+    </settings>
+</unattend>
+```
+
+To prepare image for further usage issue command through run menu or command line:
+```
+c:\Windows\System32\Sysprep\sysprep.exe /unattend:c:\unattend.xml
+```
+You will see the menu like on the image below:
+
+![Sysprep-1](https://github.com/MagicGTS/Windows-Custom-Image-Guide/blob/main/img/2.Systprep-1.PNG "syprep-1")
+
+After sysprep finished its first step you fall into audit mode where you can remove unnecessary user accounts from system and doing final steps before allow sysprep to sealled up your custom image.
+
+Finilize image with command from the next screen:
+
+![Sysprep-2](https://github.com/MagicGTS/Windows-Custom-Image-Guide/blob/main/img/2.Systprep-2.PNG "syprep-2")
+
+### Apply Start Menu Layout and Default Apps for file extensions
+
+When VM went to Off state, you can mount VM hard drive from the disk manager mmc menu.
+At this point you shuld issue two command:
+```
+Dism.exe /Image:F:\ /Import-DefaultAppAssociations:F:\AppAssociations.xml
+Import-StartLayout -LayoutPath "F:\LayoutModification.json" -MountPath "F:\"
+```
+
+### Capturing image with DISM
+
+When you have done with offline image adjustment, like remove unnecessary files and so on, just issue command:
+```
+DISM.exe /Capture-Image /ImageFile:D:\install.wim /CaptureDir:F:\ /Name:"Custom Windows fo Office"
+```
+
+At this stage you can doing anything adjustments with NLite
+
+### Compile ISO Image
+
+Before begin you should extract all content of original ISO image except install.* file from "source" folder.
+After that place preveusly created wim file inside "source" folder, change current dir to: C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg
+and issue command:
+```
+oscdimg.exe -bootdata:2#p0,e,bEtfsboot.com#pEF,e,bEfisys.bin -u1 -udfver102 -lCustomWindows D:\ISO\CustomImage D:\ISO\CustomImage.iso
+```
