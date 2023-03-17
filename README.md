@@ -151,6 +151,89 @@ DISM.exe /Capture-Image /ImageFile:D:\install.wim /CaptureDir:F:\ /Name:"Custom 
 
 At this stage you can doing anything adjustments with NLite
 
+### Multiple image inside Wim
+
+Wim is a very progressive archive format there Single Instance Storage stratagy take place. Thanks SiS if you combine more than one image in one archive there are only single copy of every uniqe files was store. If wim found one file is a full copy of already stored file inside image it does not copy file content into archive but make a link to already existent file.
+
+You can review any wim image by that command:
+```
+DISM /Get-ImageInfo /ImageFile:D:\sources\install.wim
+
+Deployment Image Servicing and Management tool
+Version: 10.0.17763.3406
+
+Details for image : D:\sources\install.wim
+
+Index : 1
+Name : Windows 11 Home
+Description : Windows 11 Home
+Size : 16,325,245,595 bytes
+
+Index : 2
+Name : Windows 11 Home N
+Description : Windows 11 Home N
+Size : 15,668,571,903 bytes
+
+Index : 3
+Name : Windows 11 Home Single Language
+Description : Windows 11 Home Single Language
+Size : 16,327,267,904 bytes
+
+Index : 4
+Name : Windows 11 Education
+Description : Windows 11 Education
+Size : 16,627,769,466 bytes
+
+Index : 5
+Name : Windows 11 Education N
+Description : Windows 11 Education N
+Size : 15,961,230,238 bytes
+
+Index : 6
+Name : Windows 11 Pro
+Description : Windows 11 Pro
+Size : 16,625,744,766 bytes
+
+Index : 7
+Name : Windows 11 Pro N
+Description : Windows 11 Pro N
+Size : 15,959,104,625 bytes
+
+Index : 8
+Name : Windows 11 Pro Education
+Description : Windows 11 Pro Education
+Size : 16,627,719,676 bytes
+
+Index : 9
+Name : Windows 11 Pro Education N
+Description : Windows 11 Pro Education N
+Size : 15,961,179,548 bytes
+
+Index : 10
+Name : Windows 11 Pro for Workstations
+Description : Windows 11 Pro for Workstations
+Size : 16,627,744,571 bytes
+
+Index : 11
+Name : Windows 11 Pro N for Workstations
+Description : Windows 11 Pro N for Workstations
+Size : 15,961,204,893 bytes
+
+The operation completed successfully.
+```
+
+As you can see there are a lot of windows editions inside one wim file. Allmost all this images has around 15Gb size but entire wim size not more than 5Gb, this achived not only by great compression ration but by involving SiS.
+
+To add multiple image inside one you schould have all of them in separate wim archive. Then you just add a some images from one to another by the next command. For example I add the 3 image to new wim file:
+```
+DISM.exe /Export-Image /SourceImageFile:D:\sources\install.wim /SourceIndex:3 /DestinationImageFile:F:\install2.wim
+```
+
+While exporting image you also can change commpression options, for example:
+```
+DISM.exe /Export-Image /SourceImageFile:D:\sources\install.wim /SourceIndex:3 /DestinationImageFile:F:\install2.wim /Compress:max
+```
+
 ### Compile ISO Image
 
 Before begin you should extract all content of original ISO image except install.* file from "source" folder.
