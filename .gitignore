@@ -1,0 +1,7 @@
+Set-WinUtilRegistry.ps1
+Set-WinUtilScheduledTask.ps1
+Set-WinUtilService.ps1
+Remove-WinUtilAPPX.ps1
+Invoke-WinUtilScript.ps1
+.selfdestroy
+.vscode

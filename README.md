@@ -242,3 +242,13 @@ and issue command:
 ```
 oscdimg.exe -bootdata:2#p0,e,bEtfsboot.com#pEF,e,bEfisys.bin -u1 -udfver102 -lCustomWindows D:\ISO\CustomImage D:\ISO\CustomImage.iso
 ```
+
+## Tweaking system
+
+Stock Windows Image some time not fully suitable for your task because it is prepeared for general use, some time it`s good to have a preconfigured Windows image for special purpouse. This section about how to remove or add apps and features to or from image.
+Mostle we will use teaks collections and scripts from [Chris Titus Tech](https://christitus.com/windows-tool/) [Windows 10/11 Toolbox](https://github.com/ChrisTitusTech/winutil)
+
+### Presysprep tweaks
+
+This tweaks may survive after sysprep that is why it is recommended to apply this with considure all consequence.
+
