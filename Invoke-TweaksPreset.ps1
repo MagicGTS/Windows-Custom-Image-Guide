@@ -4,7 +4,13 @@ $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
 
-$Tweaks = (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/config/tweaks.json").Content | ConvertFrom-Json
+try {
+    $Tweaks = (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/config/tweaks.json").Content | ConvertFrom-Json
+}
+catch {
+    $Tweaks = Get-Content -Raw "tweaks.json" | ConvertFrom-Json
+}
+
 $Presets = @"
 {
     "desktop": [
@@ -156,8 +162,8 @@ function Invoke-TweaksPreset {
 # SIG # Begin signature block
 # MIIFlwYJKoZIhvcNAQcCoIIFiDCCBYQCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUE8ULVSoMuCL2oBeK5nUu5+0J
-# VvWgggMkMIIDIDCCAgigAwIBAgIQJFLrNx0RFpdMoK+RvM3T9zANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU52+iIucQn9VouZq9UYEhF0iK
+# 5XqgggMkMIIDIDCCAgigAwIBAgIQJFLrNx0RFpdMoK+RvM3T9zANBgkqhkiG9w0B
 # AQsFADAoMSYwJAYDVQQDDB1MZXNoa2V2aWNoIEFuZHJldyBDb2RlU2lnbmluZzAe
 # Fw0yMzAyMDMwNTU5MjJaFw0yNDAyMDMwNjE5MjJaMCgxJjAkBgNVBAMMHUxlc2hr
 # ZXZpY2ggQW5kcmV3IENvZGVTaWduaW5nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
@@ -177,11 +183,11 @@ function Invoke-TweaksPreset {
 # AdkCAQEwPDAoMSYwJAYDVQQDDB1MZXNoa2V2aWNoIEFuZHJldyBDb2RlU2lnbmlu
 # ZwIQJFLrNx0RFpdMoK+RvM3T9zAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEK
 # MAigAoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3
-# AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUtPJs5NkiWDO/E3Di
-# RWfJACiVgIkwDQYJKoZIhvcNAQEBBQAEggEAudJvxp29FezWwSvTYTiQatUVBLO8
-# FZB5/6cC58Xi6WZoMhtIeI/pIQvnvPpEF7ipbwFhkL1Rz0eRVXuA0gE1WhrGPWgt
-# YJdPUU0oJGgRjoew/CW1kB0LF5IG/VHudaSaYuoPJYDrKaxXETyk1tj4kFxk8+kP
-# e/q4GCne+Li8YdWnk4RbTzW1nwetPdHj83zGSSnqh56W7mVA9RzEBySzRRFUyd+3
-# AiQ+9IrmpAaN1WE5qMVCFMAbmVZHX3IWli7ORbeZdPcQvE0FEtUxuiQwfz7KwxbG
-# 3yWi7uACWzwOri5z22ifgrVV5YpLJCHwBYVTGq7tt/uXzLjlX9mosAn/yQ==
+# AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUyaLV924j6dt4SGAq
+# /WRGgFORf1QwDQYJKoZIhvcNAQEBBQAEggEAW8gd7naxChH3ENurk1W+PinUBKv1
+# zgsZMQGLTTMGvnjTGbgL7x1n83fGRRtQl85lup0cVwaU3+q/QeLEwmkeSw8f7FhJ
+# bYtiP/BYrcE8LLNv8PdaB+zRVlkLxakjftDSsk+UkO9U+FbP+MKq2TShRwRgknwK
+# Dq6JIrLD4nA3IiIvLjqR8166g2rjLAr9Cy82fkxvjOSl9lQTUrWwpVd2Cui0RKYq
+# BGkfGDhOCdqwcdxgm6n+uhmTn0j9iBKoCIABBIc+ywZNnwvFPK5TjPu6YHDyAK28
+# vSeWJKgwcG3u6VaIIVW/fc9McWM2GWO6sKyPp+0ppOTVPvSvi46xwxpkxg==
 # SIG # End signature block

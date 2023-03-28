@@ -35,7 +35,8 @@ if (Test-Path -Path ".selfdestroy") {
         "Invoke-WinUtilScript.ps1",
         "Apply-Tweaks.ps1",
         "Invoke-TweaksPreset.ps1",
-        ".selfdestroy"
+        ".selfdestroy",
+        "tweaks.json"
     ) | ForEach-Object {
         Remove-Item -Path $_ -Force
     }

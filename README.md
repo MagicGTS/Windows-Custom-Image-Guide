@@ -252,3 +252,34 @@ Mostle we will use teaks collections and scripts from [Chris Titus Tech](https:/
 
 This tweaks may survive after sysprep that is why it is recommended to apply this with considure all consequence.
 
+* WPFEssTweaksAH - Disabling Windows Activity History Timelines
+* WPFEssTweaksHiber - Diabling Hybernation
+* WPFEssTweaksHome - Disabling HomeGroup
+* WPFEssTweaksLoc - Disabling Location
+* WPFEssTweaksServices - Disabling many Services, good for maximum performance but broke down Xbox services and so on
+* WPFEssTweaksTele - Disabling many ScheduledTask, making Registry adjustments, good for maximum performance but broke down Windows Store, Windows Updates and so on
+* WPFEssTweaksWifi - Changing WiFi autoconnection behavior
+* WPFMiscTweaksUTC - Switching to UTC time
+* WPFEssTweaksDeBloat - Removing a lot of preinstalled apps, because it removes Xbox apps this set is not suitable for Game station PC
+* WPFEssTweaksRemoveEdge - Unistalling Microsoft Edge
+* WPFMiscTweaksDisableTPMCheck - Disabling TPM check
+* WPFMiscTweaksDisableUAC - Disabling UAC
+* WPFEssTweaksRemoveCortana - Removing Cortana
+
+This tweak better to apply after system installation
+
+* WPFMiscTweaksLapPower - Improve power scheme for Laptops
+* WPFMiscTweaksPower - Improve power scheme for Desktop Maximum perfomance
+* WPFMiscTweaksExt - Enabling show file extensions is better to implement before Sysprep because it works on the user level
+* WPFMiscTweaksDisplay - Disabling animation delay and so on is better to implement before Sysprep because it works on the user level
+* WPFEssTweaksOO - Disabling many spying option
+* WPFEssTweaksRP - Enabling RestorePoint
+* WPFEssTweaksStorage - Disabling StoragePolicy is better to implement before Sysprep because it works on the user level
+* WPFMiscTweaksLapNum - Disabling NumLock indicator on laptops is better to implement before Sysprep because it works on the default user level
+* WPFMiscTweaksDisableNotifications - Disabling notifications is better to implement before Sysprep because it works on the default user level
+* WPFMiscTweaksRightClickMenu - Enabling classic right click mouse menu is better to implement before Sysprep because it works on the default user level
+* WPFEssTweaksDiskCleanup - Disabling disk cleanup
+* WPFMiscTweaksDisableMouseAcceleration - Mouse tweaking is better to implement before Sysprep because it works on the default user level
+* WPFEssTweaksDVR - Disabling GameDVR is better to implement before Sysprep because it works on the default user level
+* WPFBingSearch - Disabling Bing searching  is better to implement before Sysprep because it works on the default user level
+
