@@ -3,12 +3,17 @@ $ErrorActionPreference = "Stop"
 
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
-
-Get-Volume | Where-Object { $null -ne $_.DriveLetter -and "OK" -eq $_.OperationalStatus -and (Test-Path -Path ($_.DriveLetter + ":\my_tweaks.json")) } | `
-    Select-Object -First 1 | ForEach-Object {
-    $Path = ($_.DriveLetter + ":\my_tweaks.json")
-    Write-Warning "Loading Tweaks from '$Path'"
-    $Tweaks = Get-Content -Raw $Path | ConvertFrom-Json
+try {
+    $Tweaks = Get-Content -Raw "my_tweaks.json" | ConvertFrom-Json    
+    Write-Warning "Loading Tweaks from 'my_tweaks.json'"
+}
+catch {
+    Get-Volume | Where-Object { $null -ne $_.DriveLetter -and "OK" -eq $_.OperationalStatus -and (Test-Path -Path ($_.DriveLetter + ":\my_tweaks.json")) } | `
+        Select-Object -First 1 | ForEach-Object {
+        $Path = ($_.DriveLetter + ":\my_tweaks.json")
+        Write-Warning "Loading Tweaks from '$Path'"
+        $Tweaks = Get-Content -Raw $Path | ConvertFrom-Json
+    }
 }
 if ($null -eq $Tweaks) {
     try {
@@ -20,6 +25,7 @@ if ($null -eq $Tweaks) {
 }
 try {
     $Presets = Get-Content -Raw "my_presets.json" | ConvertFrom-Json
+    Write-Warning "Loading Presets from 'my_presets.json'"
 }
 catch {
     Get-Volume | Where-Object { $null -ne $_.DriveLetter -and "OK" -eq $_.OperationalStatus -and (Test-Path -Path ($_.DriveLetter + ":\my_presets.json")) } | `
@@ -97,7 +103,7 @@ function Show-Menu {
         Clear-Host
         $Selections = @{}
         $Count = 1
-        Write-Host “================ $Title ================”
+        Write-Host "================ $Title ================"
         $Presets.psobject.properties | ForEach-Object {
             $Selections[$Count] = $_.Name
             Write-Host "Press $($Count) for '$($_.Name)' option."
