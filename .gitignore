@@ -4,5 +4,6 @@ Set-WinUtilService.ps1
 Remove-WinUtilAPPX.ps1
 Invoke-WinUtilScript.ps1
 tweaks.json
+presets.json
 .selfdestroy
 .vscode

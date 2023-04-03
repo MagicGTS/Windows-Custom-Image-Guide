@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
-if (!
+<# if (!
     #current role
     (New-Object Security.Principal.WindowsPrincipal(
         [Security.Principal.WindowsIdentity]::GetCurrent()
@@ -22,9 +22,10 @@ if (!
     ) `
         -Verb RunAs
     exit
-}
+} #>
 . .\Invoke-TweaksPreset.ps1
-Invoke-TweaksPreset -TweaksList @("WPFEssTweaksHiber") -TweaksDefenitions $Tweaks
+$Preset = Invoke-Menu -Presets $Presets
+Invoke-TweaksPreset -TweaksList $Presets[$Preset] -TweaksDefenitions $Tweaks
 if (Test-Path -Path ".selfdestroy") {
     Write-Warning "I have all done here and must go away. Goodby."
     @(

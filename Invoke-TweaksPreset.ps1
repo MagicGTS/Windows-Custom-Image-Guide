@@ -4,54 +4,40 @@ $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
 
+Get-Volume | Where-Object { $null -ne $_.DriveLetter -and "OK" -eq $_.OperationalStatus -and (Test-Path -Path ($_.DriveLetter + ":\my_tweaks.json")) } | `
+    Select-Object -First 1 | ForEach-Object {
+    $Path = ($_.DriveLetter + ":\my_tweaks.json")
+    Write-Warning "Loading Tweaks from '$Path'"
+    $Tweaks = Get-Content -Raw $Path | ConvertFrom-Json
+}
+if ($null -eq $Tweaks) {
+    try {
+        $Tweaks = (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/config/tweaks.json").Content | ConvertFrom-Json
+    }
+    catch {
+        $Tweaks = Get-Content -Raw "tweaks.json" | ConvertFrom-Json
+    }
+}
 try {
-    $Tweaks = (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/config/tweaks.json").Content | ConvertFrom-Json
+    $Presets = Get-Content -Raw "my_presets.json" | ConvertFrom-Json
 }
 catch {
-    $Tweaks = Get-Content -Raw "tweaks.json" | ConvertFrom-Json
+    Get-Volume | Where-Object { $null -ne $_.DriveLetter -and "OK" -eq $_.OperationalStatus -and (Test-Path -Path ($_.DriveLetter + ":\my_presets.json")) } | `
+        Select-Object -First 1 | ForEach-Object {
+        $Path = ($_.DriveLetter + ":\my_presets.json")
+        Write-Warning "Loading Presets from '$Path'"
+        $Presets = Get-Content -Raw $Path | ConvertFrom-Json
+    }
 }
 
-$Presets = @"
-{
-    "desktop": [
-      "WPFEssTweaksAH",
-      "WPFEssTweaksDVR",
-      "WPFEssTweaksHiber",
-      "WPFEssTweaksHome",
-      "WPFEssTweaksLoc",
-      "WPFEssTweaksOO",
-      "WPFEssTweaksRP",
-      "WPFEssTweaksServices",
-      "WPFEssTweaksStorage",
-      "WPFEssTweaksTele",
-      "WPFEssTweaksWifi",
-      "WPFMiscTweaksPower",
-      "WPFMiscTweaksNum"
-    ],
-    "laptop": [
-      "WPFEssTweaksAH",
-      "WPFEssTweaksDVR",
-      "WPFEssTweaksHome",
-      "WPFEssTweaksLoc",
-      "WPFEssTweaksOO",
-      "WPFEssTweaksRP",
-      "WPFEssTweaksServices",
-      "WPFEssTweaksStorage",
-      "WPFEssTweaksTele",
-      "WPFEssTweaksWifi",
-      "WPFMiscTweaksLapPower",
-      "WPFMiscTweaksLapNum"
-    ],
-    "minimal": [
-      "WPFEssTweaksHome",
-      "WPFEssTweaksOO",
-      "WPFEssTweaksRP",
-      "WPFEssTweaksServices",
-      "WPFEssTweaksTele"
-    ]
-  }
-"@ | ConvertFrom-Json
-
+if ($null -eq $Presets) {
+    try {
+        $Presets = (Invoke-WebRequest -Uri "https://github.com/ChrisTitusTech/winutil/raw/main/config/preset.json").Content | ConvertFrom-Json
+    }
+    catch {
+        $Presets = Get-Content -Raw "presets.json" | ConvertFrom-Json
+    }
+}
 @(
     @{
         URI   = "https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Set-WinUtilRegistry.ps1";
@@ -82,7 +68,91 @@ $Presets = @"
         Invoke-Expression (Get-Content -Raw $Function.LOCAL)
     }
 }
+function Show-Menu {
+    <#
+    .SYNOPSIS
+        Helper function for building simple menu from Presets list.
 
+    .PARAMETER Presets
+        The psobject of tweaks presets.
+
+    .OUTPUTS
+        Returns hatable contained indexes and names
+
+    .EXAMPLE
+        Show-Menu -Presets $Presets
+
+    #>
+    [OutputType([hastable])]
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true,
+            ValueFromPipelineByPropertyName = $true,
+            Position = 0)]
+        [psobject]
+        $Presets
+    )
+
+    process {
+        Clear-Host
+        $Selections = @{}
+        $Count = 1
+        Write-Host “================ $Title ================”
+        $Presets.psobject.properties | ForEach-Object {
+            $Selections[$Count] = $_.Name
+            Write-Host "Press $($Count) for '$($_.Name)' option."
+            $Count++
+        }
+        Write-Host "Press 'Q' to quit."
+        Write-Output $Selections
+    }
+}
+function Invoke-Menu {
+    <#
+    .SYNOPSIS
+        Helper function for invoke simple menu.
+
+    .PARAMETER Presets
+        The psobject of tweaks presets.
+
+    .OUTPUTS
+        Returns string with selected name
+
+    .EXAMPLE
+        Invoke-Menu -Presets $Presets
+
+    #>
+    [OutputType([string])]
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true,
+            ValueFromPipelineByPropertyName = $true,
+            Position = 0)]
+        [psobject]
+        $Presets
+    )
+
+    process {
+        $Selected = $false
+        do {
+            $Selections = Show-Menu -Presets $Presets
+            $InKey = Read-Host -Prompt "Please make a selection"
+            if ([string]$InKey -like 'q') {
+                $Selected = $true
+                exit
+            }
+            elseif ($Selections.Keys -contains $InKey) {
+                Write-Host "You chose option $($Selections[[int]$InKey])"
+                $Selected = $true
+            }
+            else {
+                Write-Error "Undefined option."
+            }
+        }
+        while ($false -eq $Selected)
+        Write-Output $Selections[[int]$InKey]
+    }
+}
 function Invoke-TweaksPreset {
 
     <#
