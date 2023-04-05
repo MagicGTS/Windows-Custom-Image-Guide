@@ -1,9 +1,29 @@
 {
-  "minimal": [
+  "Gamers": [
+    "WPFEssTweaksAH",
+    "WPFEssTweaksHiber",
     "WPFEssTweaksHome",
-    "WPFEssTweaksOO",
-    "WPFEssTweaksRP",
-    "WPFEssTweaksServices",
-    "WPFEssTweaksTele"
+    "WPFEssTweaksLoc",
+    "DataCollectionServices",
+    "MyGenTweaksServices",
+    "MyGameTweaksServices",
+    "ContentDelivery",
+    "WPFMiscTweaksUTC",
+    "DeBloat",
+    "InvokeScript",
+    "WPFMiscTweaksDisableUAC",
+    "WPFEssTweaksRemoveCortana"
+  ],
+  "Gamers_user": [
+    "MiscUserTweaks",
+    "WPFEssTweaksWifi",
+    "WPFMiscTweaksPower",
+    "WPFMiscTweaksDisplay",
+    "WPFEssTweaksStorage",
+    "WPFMiscTweaksDisableNotifications",
+    "WPFMiscTweaksRightClickMenu",
+    "WPFMiscTweaksDisableMouseAcceleration",
+    "WPFEssTweaksDVR",
+    "WPFBingSearch"
   ]
 }

@@ -88,6 +88,94 @@
       }
     ]
   },
+  "DataCollectionServices": {
+    "registry": [
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\CaptureService",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\cbdhsvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\CDPSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\CDPUserSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\ConsentUxUserSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\DevicePickerUserSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\DevicesFlowUserSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\PimIndexMaintenanceSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\PrintWorkflowUserSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\UnistoreSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\UserDataSvc",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      },
+      {
+        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\WpnUserService",
+        "Name": "UserServiceFlags",
+        "Type": "Dword",
+        "Value": "0",
+        "OriginalValue": "2"
+      }
+    ]
+  },
   "MyGenTweaksServices": {
     "service": [
       {
@@ -378,11 +466,7 @@
         "StartupType": "Manual",
         "OriginalType": "Automatic",
         "Name": "vmictimesync"
-      }
-    ]
-  },
-  "WPFEssTweaksTele": {
-    "ScheduledTask": [
+      },
       {
         "Name": "Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser",
         "State": "Disabled",
@@ -414,6 +498,15 @@
         "OriginalState": "Enabled"
       },
       {
+        "Name": "Microsoft\\Windows\\Windows Error Reporting\\QueueReporting",
+        "State": "Disabled",
+        "OriginalState": "Enabled"
+      }
+    ]
+  },
+  "ContentDelivery": {
+    "ScheduledTask": [
+      {
         "Name": "Microsoft\\Windows\\Feedback\\Siuf\\DmClient",
         "State": "Disabled",
         "OriginalState": "Enabled"
@@ -422,28 +515,9 @@
         "Name": "Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload",
         "State": "Disabled",
         "OriginalState": "Enabled"
-      },
-      {
-        "Name": "Microsoft\\Windows\\Windows Error Reporting\\QueueReporting",
-        "State": "Disabled",
-        "OriginalState": "Enabled"
       }
     ],
     "registry": [
-      {
-        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection",
-        "type": "Dword",
-        "value": 0,
-        "name": "AllowTelemetry",
-        "OriginalValue": "1"
-      },
-      {
-        "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
-        "OriginalValue": "1",
-        "name": "AllowTelemetry",
-        "value": 0,
-        "type": "Dword"
-      },
       {
         "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
         "OriginalValue": "1",
@@ -452,80 +526,10 @@
         "type": "Dword"
       },
       {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "OemPreInstalledAppsEnabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "PreInstalledAppsEnabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "PreInstalledAppsEverEnabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "SilentInstalledAppsEnabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "SubscribedContent-338387Enabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "SubscribedContent-338388Enabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "SubscribedContent-338389Enabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "SubscribedContent-353698Enabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
-        "OriginalValue": "1",
-        "name": "SystemPaneSuggestionsEnabled",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
         "Path": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
         "OriginalValue": "0",
         "name": "DisableWindowsConsumerFeatures",
         "value": 1,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Siuf\\Rules",
-        "OriginalValue": "0",
-        "name": "NumberOfSIUFInPeriod",
-        "value": 0,
         "type": "Dword"
       },
       {
@@ -562,153 +566,6 @@
         "name": "DODownloadMode",
         "value": 1,
         "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Remote Assistance",
-        "OriginalValue": "1",
-        "name": "fAllowToGetHelp",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\OperationStatusManager",
-        "OriginalValue": "0",
-        "name": "EnthusiastMode",
-        "value": 1,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
-        "OriginalValue": "1",
-        "name": "ShowTaskViewButton",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\People",
-        "OriginalValue": "1",
-        "name": "PeopleBand",
-        "value": 0,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
-        "OriginalValue": "1",
-        "name": "LaunchTo",
-        "value": 1,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\FileSystem",
-        "OriginalValue": "0",
-        "name": "LongPathsEnabled",
-        "value": 1,
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\DriverSearching",
-        "OriginalValue": "1",
-        "name": "SearchOrderConfig",
-        "value": "0",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
-        "OriginalValue": "1",
-        "name": "SystemResponsiveness",
-        "value": "0",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
-        "OriginalValue": "1",
-        "name": "NetworkThrottlingIndex",
-        "value": "4294967295",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\Control Panel\\Desktop",
-        "OriginalValue": "1",
-        "name": "MenuShowDelay",
-        "value": "1",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\Control Panel\\Desktop",
-        "OriginalValue": "1",
-        "name": "AutoEndTasks",
-        "value": "1",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
-        "OriginalValue": "0",
-        "name": "ClearPageFileAtShutdown",
-        "value": "0",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SYSTEM\\ControlSet001\\Services\\Ndu",
-        "OriginalValue": "1",
-        "name": "Start",
-        "value": "00000004",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\Control Panel\\Mouse",
-        "OriginalValue": "1",
-        "name": "MouseHoverTime",
-        "value": "400",
-        "type": "String"
-      },
-      {
-        "Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters",
-        "OriginalValue": "1",
-        "name": "IRPStackSize",
-        "value": "20",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Feeds",
-        "OriginalValue": "1",
-        "name": "EnableFeeds",
-        "value": "0",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Feeds",
-        "OriginalValue": "1",
-        "name": "ShellFeedsTaskbarViewMode",
-        "value": "2",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
-        "OriginalValue": "1",
-        "name": "HideSCAMeetNow",
-        "value": "1",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
-        "OriginalValue": "1",
-        "name": "GPU Priority",
-        "value": "8",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
-        "OriginalValue": "1",
-        "name": "Priority",
-        "value": "6",
-        "type": "Dword"
-      },
-      {
-        "Path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
-        "OriginalValue": "High",
-        "name": "Scheduling Category",
-        "value": "High",
-        "type": "String"
       }
     ],
     "service": [
@@ -727,41 +584,17 @@
         "StartupType": "Disabled",
         "OriginalType": "Manual"
       }
-    ],
-    "InvokeScript": [
-      "bcdedit /set `{current`} bootmenupolicy Legacy | Out-Null
-        If ((get-ItemProperty -Path \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\" -Name CurrentBuild).CurrentBuild -lt 22557) {
-            $taskmgr = Start-Process -WindowStyle Hidden -FilePath taskmgr.exe -PassThru
-            Do {
-                Start-Sleep -Milliseconds 100
-                $preferences = Get-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\TaskManager\" -Name \"Preferences\" -ErrorAction SilentlyContinue
-            } Until ($preferences)
-            Stop-Process $taskmgr
-            $preferences.Preferences[28] = 0
-            Set-ItemProperty -Path \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\TaskManager\" -Name \"Preferences\" -Type Binary -Value $preferences.Preferences
-        }
-        Remove-Item -Path \"HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\NameSpace\\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}\" -Recurse -ErrorAction SilentlyContinue  
-
-        # Group svchost.exe processes
-        $ram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
-        Set-ItemProperty -Path \"HKLM:\\SYSTEM\\CurrentControlSet\\Control\" -Name \"SvcHostSplitThresholdInKB\" -Type DWord -Value $ram -Force
-
-        $autoLoggerDir = \"$env:PROGRAMDATA\\Microsoft\\Diagnosis\\ETLLogs\\AutoLogger\"
-        If (Test-Path \"$autoLoggerDir\\AutoLogger-Diagtrack-Listener.etl\") {
-            Remove-Item \"$autoLoggerDir\\AutoLogger-Diagtrack-Listener.etl\"
-        }
-        icacls $autoLoggerDir /deny SYSTEM:`(OI`)`(CI`)F | Out-Null
-
-        #Timeout Tweaks cause flickering on Windows now
-        #Remove-ItemProperty -Path \"HKCU:\\Control Panel\\Desktop\" -Name \"WaitToKillAppTimeout\" -ErrorAction SilentlyContinue
-        #Remove-ItemProperty -Path \"HKCU:\\Control Panel\\Desktop\" -Name \"HungAppTimeout\" -ErrorAction SilentlyContinue
-        #Remove-ItemProperty -Path \"HKLM:\\SYSTEM\\CurrentControlSet\\Control\" -Name \"WaitToKillServiceTimeout\" -ErrorAction SilentlyContinue
-        #Remove-ItemProperty -Path \"HKCU:\\Control Panel\\Desktop\" -Name \"LowLevelHooksTimeout\" -ErrorAction SilentlyContinue
-        #Remove-ItemProperty -Path \"HKCU:\\Control Panel\\Desktop\" -Name \"WaitToKillServiceTimeout\" -ErrorAction SilentlyContinue
-
-        $ram = (Get-CimInstance -ClassName \"Win32_PhysicalMemory\" | Measure-Object -Property Capacity -Sum).Sum / 1kb
-        Set-ItemProperty -Path \"HKLM:\\SYSTEM\\CurrentControlSet\\Control\" -Name \"SvcHostSplitThresholdInKB\" -Type DWord -Value $ram -Force
-        "
+    ]
+  },
+  "MiscUserTweaks": {
+    "registry": [
+      {
+        "Path": "HKCU:\\SOFTWARE\\Microsoft\\Siuf\\Rules",
+        "OriginalValue": "0",
+        "name": "NumberOfSIUFInPeriod",
+        "value": 0,
+        "type": "Dword"
+      }
     ]
   },
   "WPFEssTweaksWifi": {
@@ -815,17 +648,6 @@
         "Type": "DWord",
         "Value": "0000000",
         "OriginalValue": "00000001"
-      }
-    ]
-  },
-  "WPFMiscTweaksExt": {
-    "registry": [
-      {
-        "Path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
-        "Name": "HideFileExt",
-        "Type": "DWord",
-        "Value": "0",
-        "OriginalValue": "1"
       }
     ]
   },
@@ -910,7 +732,7 @@
       "Set-ItemProperty -Path \"HKCU:\\Control Panel\\Desktop\" -Name \"UserPreferencesMask\" -Type Binary -Value ([byte[]](144,18,3,128,16,0,0,0))"
     ]
   },
-  "WPFEssTweaksDeBloat": {
+  "DeBloat": {
     "appx": [
       "Microsoft.Microsoft3DViewer",
       "Microsoft.AppConnector",
@@ -923,7 +745,6 @@
       "Microsoft.BingHealthAndFitness",
       "Microsoft.BingTravel",
       "Microsoft.MinecraftUWP",
-      "Microsoft.GamingServices",
       "Microsoft.GetHelp",
       "Microsoft.Getstarted",
       "Microsoft.Messaging",
@@ -946,16 +767,9 @@
       "Microsoft.WindowsMaps",
       "Microsoft.WindowsPhone",
       "Microsoft.WindowsSoundRecorder",
-      "Microsoft.XboxApp",
       "Microsoft.ConnectivityStore",
       "Microsoft.CommsPhone",
-      "Microsoft.ScreenSketch",
-      "Microsoft.Xbox.TCUI",
-      "Microsoft.XboxGameOverlay",
-      "Microsoft.XboxGameCallableUI",
-      "Microsoft.XboxSpeechToTextOverlay",
       "Microsoft.MixedReality.Portal",
-      "Microsoft.XboxIdentityProvider",
       "Microsoft.ZuneMusic",
       "Microsoft.ZuneVideo",
       "Microsoft.Getstarted",
@@ -1239,3 +1053,4 @@
     ]
   }
 }
+
