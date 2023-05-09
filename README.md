@@ -283,3 +283,19 @@ This tweak better to apply after system installation
 * WPFEssTweaksDVR - Disabling GameDVR is better to implement before Sysprep because it works on the default user level
 * WPFBingSearch - Disabling Bing searching  is better to implement before Sysprep because it works on the default user level
 
+### Howto run it
+
+For the first step, you should download these files for autonomous mode:
+* [Set-WinUtilRegistry.ps1](https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Set-WinUtilRegistry.ps1)
+* [Set-WinUtilScheduledTask.ps1](https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Set-WinUtilScheduledTask.ps1)
+* [Set-WinUtilService.ps1](https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Set-WinUtilService.ps1)
+* [Remove-WinUtilAPPX.ps1](https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Remove-WinUtilAPPX.ps1)
+* [Invoke-WinUtilScript.ps1](https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Invoke-WinUtilScript.ps1)
+
+And this files for all other situation:
+* [Apply-Tweaks.ps1](https://github.com/MagicGTS/Windows-Custom-Image-Guide/raw/main/Apply-Tweaks.ps1)
+* [Invoke-TweaksPreset.ps1](https://github.com/MagicGTS/Windows-Custom-Image-Guide/raw/main/Invoke-TweaksPreset.ps1)
+* [my_presets.json](https://github.com/MagicGTS/Windows-Custom-Image-Guide/raw/main/my_presets.json)
+* [my_tweaks.json](https://github.com/MagicGTS/Windows-Custom-Image-Guide/raw/main/my_tweaks.json)
+
+To run scripts just run as Administrator run.cmd or Apply-Tweaks.ps1 files.

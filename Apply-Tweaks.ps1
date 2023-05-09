@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 
 $PSDefaultParameterValues['*:Encoding'] = 'utf8'
 $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
-<# if (!
+if (!
     #current role
     (New-Object Security.Principal.WindowsPrincipal(
         [Security.Principal.WindowsIdentity]::GetCurrent()
@@ -17,12 +17,13 @@ $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
         -FilePath 'powershell' `
         -ArgumentList (
         #flatten to single array
-        '-File', $MyInvocation.MyCommand.Source, $args `
+        '-ExecutionPolicy Bypass', '-File', $MyInvocation.MyCommand.Source, $args `
         | % { $_ }
     ) `
         -Verb RunAs
     exit
-} #>
+}
+Set-Location -Path $(Split-Path -Path $MyInvocation.MyCommand.Source)
 . .\Invoke-TweaksPreset.ps1
 $Preset = Invoke-Menu -Presets $Presets
 Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
