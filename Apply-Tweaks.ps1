@@ -25,7 +25,7 @@ $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
 } #>
 . .\Invoke-TweaksPreset.ps1
 $Preset = Invoke-Menu -Presets $Presets
-Invoke-TweaksPreset -TweaksList $Presets[$Preset] -TweaksDefenitions $Tweaks
+Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
 if (Test-Path -Path ".selfdestroy") {
     Write-Warning "I have all done here and must go away. Goodby."
     @(

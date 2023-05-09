@@ -89,7 +89,7 @@ function Show-Menu {
         Show-Menu -Presets $Presets
 
     #>
-    [OutputType([hastable])]
+    [OutputType([hashtable])]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true,
