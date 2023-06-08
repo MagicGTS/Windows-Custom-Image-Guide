@@ -13,7 +13,8 @@
     "InvokeScript",
     "WPFMiscTweaksDisableUAC",
     "WPFEssTweaksRemoveCortana",
-    "WPFAddUltPerf"
+    "WPFAddUltPerf",
+    "NotepadppMenu"
   ],
   "Gamers_user": [
     "MiscUserTweaks",

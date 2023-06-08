@@ -42,6 +42,17 @@
       }
     ]
   },
+  "NotepadppMenu": {
+    "registry": [
+      {
+        "Path": "HKEY_CLASSES_ROOT\\CLSID\\{B298D29A-A6ED-11DE-BA8C-A68E55D89593}\\Settings",
+        "Name": "Title",
+        "Type": "String",
+        "Value": "Edit with &Notepad++",
+        "OriginalValue": ""
+      }
+    ]
+  },
   "WPFEssTweaksHome": {
     "service": [
       {
