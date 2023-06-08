@@ -283,7 +283,7 @@ This tweak better to apply after system installation
 * WPFEssTweaksDVR - Disabling GameDVR is better to implement before Sysprep because it works on the default user level
 * WPFBingSearch - Disabling Bing searching  is better to implement before Sysprep because it works on the default user level
 
-### Howto run it
+### Howto run it, method 1
 
 For the first step, you should download these files for autonomous mode:
 * [Set-WinUtilRegistry.ps1](https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Set-WinUtilRegistry.ps1)
@@ -299,3 +299,9 @@ And this files for all other situation:
 * [my_tweaks.json](https://github.com/MagicGTS/Windows-Custom-Image-Guide/raw/main/my_tweaks.json)
 
 To run scripts just run as Administrator run.cmd or Apply-Tweaks.ps1 files.
+
+### Howto run it, method 2
+* Download the source as a zip file, unzip the content to any folder you want.
+* Adjust my_tweaks.json and my_presets.json according to your needs
+* Execute Compiler.ps1, this script produces a new file: tweaker.ps1
+* tweaker.ps1 It is a complete solution to run, it is autodeleted after finishing its work

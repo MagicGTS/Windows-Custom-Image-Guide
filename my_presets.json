@@ -12,7 +12,8 @@
     "DeBloat",
     "InvokeScript",
     "WPFMiscTweaksDisableUAC",
-    "WPFEssTweaksRemoveCortana"
+    "WPFEssTweaksRemoveCortana",
+    "WPFAddUltPerf"
   ],
   "Gamers_user": [
     "MiscUserTweaks",

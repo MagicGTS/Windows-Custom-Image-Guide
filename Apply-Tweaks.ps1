@@ -26,7 +26,9 @@ if (!
 Set-Location -Path $(Split-Path -Path $MyInvocation.MyCommand.Source)
 . .\Invoke-TweaksPreset.ps1
 $Preset = Invoke-Menu -Presets $Presets
-Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
+if ($Preset -ne -1){
+    Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
+}
 if (Test-Path -Path ".selfdestroy") {
     Write-Warning "I have all done here and must go away. Goodby."
     @(

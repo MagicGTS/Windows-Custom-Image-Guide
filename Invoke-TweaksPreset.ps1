@@ -64,6 +64,10 @@ if ($null -eq $Presets) {
     @{
         URI   = "https://github.com/ChrisTitusTech/winutil/raw/main/functions/private/Invoke-WinUtilScript.ps1";
         LOCAL = "Invoke-WinUtilScript.ps1"
+    },
+    @{
+        URI   = "https://github.com/ChrisTitusTech/winutil/raw/main/functions/public/Invoke-WPFUltimatePerformance.ps1";
+        LOCAL = "Invoke-WPFUltimatePerformance.ps1"
     }
 ) | ForEach-Object {
     $Function = $_
@@ -145,6 +149,7 @@ function Invoke-Menu {
             $InKey = Read-Host -Prompt "Please make a selection"
             if ([string]$InKey -like 'q') {
                 $Selected = $true
+                $InKey = -1
                 exit
             }
             elseif ($Selections.Keys -contains $InKey) {
