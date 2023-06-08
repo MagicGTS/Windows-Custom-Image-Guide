@@ -254,4 +254,4 @@ if ($Preset -ne 100){
 Write-Warning "I have all done here and must go away. Goodby."
 Sleep -Seconds 5
 '@ | Out-File $Output -Append -Encoding Unicode
-"Remove-Item -Path `$script:MyInvocation.MyCommand.Path -Force" | Out-File $Output -Append -Encoding Unicode
+"Remove-Item -Path `$MyInvocation.MyCommand.Source -Force" | Out-File $Output -Append -Encoding Unicode
