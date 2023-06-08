@@ -157,7 +157,8 @@ function Invoke-Menu {
                 $Selected = $true
             }
             else {
-                Write-Error "Undefined option."
+                Write-Host -ForegroundColor Red "Undefined option."
+                Sleep -Seconds 5
             }
         }
         while ($false -eq $Selected)

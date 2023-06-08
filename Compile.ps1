@@ -113,7 +113,8 @@ function Invoke-Menu {
                 $Selected = $true
             }
             else {
-                Write-Error "Undefined option."
+                Write-Host -ForegroundColor Red "Undefined option."
+                Sleep -Seconds 5
             }
         }
         while ($false -eq $Selected)
@@ -250,5 +251,7 @@ $Preset = Invoke-Menu -Presets $Presets
 if ($Preset -ne 100){
     Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
 }
+Write-Warning "I have all done here and must go away. Goodby."
+Sleep -Seconds 5
 '@ | Out-File $Output -Append -Encoding Unicode
 "Remove-Item -Path `$script:MyInvocation.MyCommand.Path -Force" | Out-File $Output -Append -Encoding Unicode

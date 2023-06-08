@@ -31,6 +31,7 @@ if ($Preset -ne -1){
 }
 if (Test-Path -Path ".selfdestroy") {
     Write-Warning "I have all done here and must go away. Goodby."
+    Sleep -Seconds 5
     @(
         "Set-WinUtilRegistry.ps1",
         "Set-WinUtilScheduledTask.ps1",
