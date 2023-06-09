@@ -25,7 +25,8 @@ if (!
 }
 Set-Location -Path $(Split-Path -Path $MyInvocation.MyCommand.Source)
 . .\Invoke-TweaksPreset.ps1
-$Preset = Invoke-Menu -Presets $Presets
+$Preset = Invoke-Menu -Presets $Presets -Promt "Please make a selection" -Option "You chose option {0}" -Undefined "Undefined option." `
+    -SM_Title "Choose option" -SM_Option "Press {0} for '{1}' option."-SM_Exit "Press 'Q' to quit."
 if ($Preset -ne -1){
     Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
 }

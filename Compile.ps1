@@ -57,20 +57,23 @@ function Show-Menu {
             ValueFromPipelineByPropertyName = $true,
             Position = 0)]
         [psobject]
-        $Presets
+        $Presets,
+        $Title = "Choose option",
+        $Option = "Press {0} for '{1}' option.",
+        $Exit = "Press 'Q' to quit."
     )
 
     process {
         Clear-Host
         $Selections = @{}
         $Count = 1
-        Write-Host "================ $Title ================"
+        Write-Host $("================ {0} ================" -f $Title)
         $Presets.psobject.properties | ForEach-Object {
             $Selections[$Count] = $_.Name
-            Write-Host "Press $($Count) for '$($_.Name)' option."
+            Write-Host $($Option -f $Count,$_.Name)
             $Count++
         }
-        Write-Host "Press 'Q' to quit."
+        Write-Host $Exit
         Write-Output $Selections
     }
 }
@@ -96,24 +99,30 @@ function Invoke-Menu {
             ValueFromPipelineByPropertyName = $true,
             Position = 0)]
         [psobject]
-        $Presets
+        $Presets,
+        $Promt = "Please make a selection",
+        $Option = "You chose option {0}",
+        $Undefined ="Undefined option.",
+        $SM_Title = "Choose option",
+        $SM_Option = "Press {0} for '{1}' option.",
+        $SM_Exit = "Press 'Q' to quit."
     )
 
     process {
         $Selected = $false
         do {
-            $Selections = Show-Menu -Presets $Presets
-            $InKey = Read-Host -Prompt "Please make a selection"
+            $Selections = Show-Menu -Presets $Presets -Title $SM_Title -Option $SM_Option -Exit $SM_Exit
+            $InKey = Read-Host -Prompt $Promt
             if ([string]$InKey -like 'q') {
                 $Selected = $true
                 $InKey = 100
             }
             elseif ($Selections.Keys -contains $InKey) {
-                Write-Host "You chose option $($Selections[[int]$InKey])"
+                Write-Host $( $Option -f $Selections[[int]$InKey])
                 $Selected = $true
             }
             else {
-                Write-Host -ForegroundColor Red "Undefined option."
+                Write-Host -ForegroundColor Red $Undefined
                 Sleep -Seconds 5
             }
         }
@@ -247,7 +256,8 @@ $PSHeader | Out-File $Output -Encoding Unicode
 (Get-Content -Raw "my_presets.json").replace("'","''") | Out-File $Output -Append -Encoding Unicode
 "'@ | ConvertFrom-Json" | Out-File $Output -Append -Encoding Unicode
 @'
-$Preset = Invoke-Menu -Presets $Presets
+$Preset = Invoke-Menu -Presets $Presets -Promt "Please make a selection" -Option "You chose option {0}" -Undefined "Undefined option." `
+    -SM_Title "Choose option" -SM_Option "Press {0} for '{1}' option."-SM_Exit "Press 'Q' to quit."
 if ($Preset -ne 100){
     Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
 }
