@@ -262,6 +262,7 @@ if ($Preset -ne 100){
     Invoke-TweaksPreset -TweaksList $Presets.$Preset -TweaksDefenitions $Tweaks
 }
 Write-Warning "I have all done here and must go away. Goodby."
+Remove-Item -Path $MyInvocation.MyCommand.Source -Force
+
 Sleep -Seconds 5
 '@ | Out-File $Output -Append -Encoding Unicode
-"Remove-Item -Path `$MyInvocation.MyCommand.Source -Force" | Out-File $Output -Append -Encoding Unicode
