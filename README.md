@@ -86,7 +86,7 @@ After you have done with installation software inside virtual machine, customize
 
 To export and save for future use Start menu layout you should issue Powershell command:
 ```
-Export-StartLayout -Path "C:\LayoutModification.json"
+Export-StartLayout -Path "LayoutModification.json"
 ```
 
 This file will need on the one of next steps
