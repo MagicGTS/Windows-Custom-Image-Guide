@@ -127,6 +127,8 @@ You will see the menu like on the image below:
 
 ![Sysprep-1](https://github.com/MagicGTS/Windows-Custom-Image-Guide/blob/main/img/2.Systprep-1.PNG "syprep-1")
 
+Get-AppxPackage -AllUsers|Where-Object -Property Name -like "Microsoft.LanguageExperience* "|Remove-AppxPackage -AllUsers
+
 After sysprep finished its first step you fall into audit mode where you can remove unnecessary user accounts from system and doing final steps before allow sysprep to sealled up your custom image.
 
 Finilize image with command from the next screen:
